@@ -3,22 +3,26 @@ from sys import stderr
 from json import dumps 
 from time import sleep 
 import json
-#Load Config
+import threading
+from datetime import datetime
+
+# Load Config
 with open('./config.json') as f:
-  data = json.load(f)
-  for c in data['Config']:
-        print('Loading...')
-channelid = c['channelid'] #modify this in config.json
-token = c['token'] #modify this in config.json
-message = c['message'] #modify this in config.json
+    data = json.load(f)
+    for c in data['Config']:
+        print('Loading configuration...')
+        channelid = c['channelid']
+        token = c['token']
+        messages = c['messages']
+
 header_data = { 
-	"content-type": "application/json", 
-	"user-agent": "discordapp.com", 
-	"authorization": token
+    "content-type": "application/json", 
+    "user-agent": "discordapp.com", 
+    "authorization": token
 } 
  
 def get_connection(): 
-	return HTTPSConnection("discordapp.com", 443) 
+    return HTTPSConnection("discordapp.com", 443) 
  
 def send_message(conn, channel_id, message_data): 
     try: 
@@ -26,25 +30,48 @@ def send_message(conn, channel_id, message_data):
         resp = conn.getresponse() 
          
         if 199 < resp.status < 300: 
-            print("Message Sent") 
+            print(f"Message Sent at {datetime.now().strftime('%H:%M:%S')}")
             pass 
- 
         else: 
             stderr.write(f"HTTP {resp.status}: {resp.reason}\n") 
             pass 
  
-    except: 
-        stderr.write("Error\n") 
- 
+    except Exception as e:
+        stderr.write(f"Error: {str(e)}\n") 
+
+def message_loop(message, interval):
+    while True:
+        message_data = { 
+            "content": message, 
+            "tts": "false"
+        } 
+        send_message(get_connection(), channelid, dumps(message_data))
+        sleep(interval)
+
 def main(): 
-	message_data = { 
-		"content": message, 
-		"tts": "false"
-	} 
- 
-	send_message(get_connection(), channelid, dumps(message_data)) 
- 
+    threads = []
+    for msg_config in messages:
+        message = msg_config['message']
+        interval = msg_config['interval']
+        print(f"Starting message thread for '{message}' with interval {interval} seconds")
+        
+        thread = threading.Thread(
+            target=message_loop,
+            args=(message, interval),
+            daemon=True
+        )
+        threads.append(thread)
+        thread.start()
+    
+    # Keep the main thread alive
+    try:
+        while True:
+            sleep(1)
+    except KeyboardInterrupt:
+        print("\nShutting down...")
+        for thread in threads:
+            thread.join()
+        print("Bot stopped successfully")
+
 if __name__ == '__main__': 
-	while True:    
-		main()      
-		sleep(15) #How often the message will be sent (in seconds), every 1 hour = 3600
+    main()
