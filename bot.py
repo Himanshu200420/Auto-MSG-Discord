@@ -184,7 +184,7 @@ def main():
         elif choice == "2":
             start_bot()
         elif choice == "3":
-            if Confirm.ask("Are you sure you want to exit?", default=False):
+            if Confirm.ask("Are you sure you want to exit?", default=False): 
                 console.print("[yellow]Goodbye![/yellow]")
                 break
         else:
