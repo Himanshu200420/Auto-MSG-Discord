@@ -1,6 +1,6 @@
 from http.client import HTTPSConnection 
 from sys import stderr 
-from json import dumps, load, dump
+from json import dumps
 from time import sleep 
 import json
 import threading
@@ -23,12 +23,12 @@ console = Console()
 
 # ASCII Art
 BANNER = """
-██╗   ██╗███████╗██████╗ ███████╗██████╗ ███████╗██████╗ 
-██║   ██║██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔══██╗
-██║   ██║█████╗  ██████╔╝███████╗██████╔╝█████╗  ██████╔╝
-╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██╔══██╗██╔══╝  ██╔══██╗
- ╚████╔╝ ███████╗██║  ██║███████║██║  ██║███████╗██║  ██║
-  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+ █████╗ ██╗   ██╗████████╗ ██████╗     ███╗   ███╗███████╗ ██████╗ 
+██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗    ████╗ ████║██╔════╝██╔════╝ 
+███████║██║   ██║   ██║   ██║   ██║    ██╔████╔██║███████╗██║  ███╗
+██╔══██║██║   ██║   ██║   ██║   ██║    ██║╚██╔╝██║╚════██║██║   ██║
+██║  ██║╚██████╔╝   ██║   ╚██████╔╝    ██║ ╚═╝ ██║███████║╚██████╔╝
+╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝     ╚═╝     ╚═╝╚══════╝ ╚═════╝ 
 """
 
 # Global shutdown event
@@ -184,7 +184,7 @@ def main():
         elif choice == "2":
             start_bot()
         elif choice == "3":
-            if Confirm.ask("Are you sure you want to exit?"):
+            if Confirm.ask("Are you sure you want to exit?", default=False):
                 console.print("[yellow]Goodbye![/yellow]")
                 break
         else:
