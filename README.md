@@ -70,6 +70,21 @@ The configuration is done in the `config.json` file.
   ]
 }
 ```
+## Configuration Fields
+- `token`: Your user profile token. You can get it from the Authorization Headers in **_Chrome Tools Network_** tab.
+- `channel_id`: The ID of the channel where you want to send messages. You can get it by right-clicking on the channel and selecting "Copy ID" (make sure Developer Mode is enabled in Discord settings).   
+- `messages`: An array of message objects. Each object contains:
+  - `content`: The message content to be sent.
+  - `min_interval`: The minimum interval (in seconds) between messages.
+  - `max_interval`: The maximum interval (in seconds) between messages.
+
+## Workflow 🔄
+
+- The bot will send messages to the specified channel at random intervals between the `min_interval` and `max_interval` for each message.
+- The bot will continue to send messages until it is stopped manually.
+- The bot will log the sent messages to the terminal console with proper timestamps.
+
+<img align="center" src="./public/workflow.png">
 
 ## Developers 👨‍💻
 
