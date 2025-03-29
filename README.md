@@ -45,13 +45,29 @@ python bot.py
 ## Configuration ⚙️
 
 The configuration is done in the `config.json` file.
+
 > Note: Make sure to configure `config.json` before running the bot.
 
 ```json
 {
-    "token": "your_token_here",
-    "channel_id": "your_channel_id_here",
-    "message": "your_message_here"
+  "Config": [
+    {
+      "token": "your_token_here",
+      "channel_id": "your_channel_id_here",
+      "messages": [
+        {
+          "content": "Hello, this is a test message!",
+          "min_interval": 5,
+          "max_interval": 10
+        },
+        {
+          "content": "This is another message.",
+          "min_interval": 10,
+          "max_interval": 15
+        }
+      ]
+    }
+  ]
 }
 ```
 
