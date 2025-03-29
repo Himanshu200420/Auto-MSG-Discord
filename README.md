@@ -1,6 +1,17 @@
 # Auto message 🤖 <img src="https://wakatime.com/badge/user/9a827e04-5df8-4525-ace8-e88326bbf87a/project/9b7039ba-c96f-4985-b9ec-b8485c635791.svg" alt="wakatime">
 
-An Automating python script to send message to a channel on behalf of a user with specific messages & their assigned intervals.
+- An Automating python script to send message to a channel on behalf of a user with specific messages & their assigned intervals.
+
+> [!CAUTION] 
+> This bot is for educational purposes only. Use it responsibly and in accordance with Discord's Terms of Service.
+> Do not use it for spamming or any malicious activities.
+
+<a href="https://www.youtube.com/watch?v=e_oeqp96lRc" target="_blank">
+  <div align="center">
+    <img src="./public/demo.png" height=400px width=650px alt="Auto Message Discord Bot" />
+  </div>
+</a>
+
 
 ## Usage 🚀
 
@@ -29,16 +40,6 @@ pip install -r requirements.txt  # Or use `uv pip install` if available
 ```bash
 python bot.py
 ```
-
-## 🎥 Video Demo
-
-> Here's a working and expected screenshot of REPO_NAME
-
-<div>
-    <a href="https://www.youtube.com/watch?v=e_oeqp96lRc" target="_blank">
-    <img src="./public/demo.png" height=400px width=650px alt="Auto Message Discord Bot" />
-    </a>
-</div>
 
 <br>
 
