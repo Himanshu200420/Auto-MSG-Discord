@@ -132,7 +132,7 @@ def show_menu():
 
 def start_bot():
     config = load_config()
-    channelid = config['Config'][0]['channelid']
+    channelid = config['Config'][0]['channel_id']
     token = config['Config'][0]['token']
     messages = config['Config'][0]['messages']
     
@@ -144,7 +144,7 @@ def start_bot():
     
     threads = []
     for msg_config in messages:
-        message = msg_config['message']
+        message = msg_config['content']
         min_interval = msg_config['min_interval']
         max_interval = msg_config['max_interval']
         console.print(f"[green]Starting message thread for '{message}' with random interval between {min_interval} and {max_interval} seconds[/green]")
