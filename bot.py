@@ -47,8 +47,9 @@ logger = logging.getLogger("discord_bot")
 def setup_config():
     if not os.path.exists('./config.json'):
         console.print(Panel.fit("No config file found. Let's create one!", title="Setup", border_style="blue"))
-        channelid = Prompt.ask("Enter your Discord channel ID")
-        token = Prompt.ask("Enter your Discord bot token")
+        channelid = Prompt.ask("1179793973712265259 ")
+        token = Prompt.ask("ODU4NjIyNDIxNzExMzIzMTU2.GUtZci.2MV0Hm8BfpyfdUMF4kZNKBH7HaZTB_qVEm_nSQ
+ ")
         
         config = {
             "Config": [{
@@ -65,9 +66,9 @@ def setup_config():
         console.print("[green]Config file found![/green]")
 
 def add_message():
-    message = Prompt.ask("Enter the message to send")
-    min_interval = float(Prompt.ask("Enter minimum interval (in seconds)", default="10"))
-    max_interval = float(Prompt.ask("Enter maximum interval (in seconds)", default="30"))
+    message = Prompt.ask("rpg hunt h t n")
+    min_interval = float(Prompt.ask("60", default="10"))
+    max_interval = float(Prompt.ask("70", default="30"))
     
     with open('./config.json', 'r') as f:
         config = json.load(f)
